@@ -1,0 +1,17 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Look up a ticket
+{% endblock %}
+
+{% block main %}
+    <h1>Fill in ticket # to look for :</h1>
+
+	<form action="/lookup" method="post">
+        <div class="form-group">
+            <input autocomplete="off" autofocus class="form-control" name="ticket" type="integer">
+        </div>
+        <button class="btn btn-primary" type="submit">Lookup ticket</button>
+    </form>
+
+{% endblock %}

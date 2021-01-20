@@ -1,0 +1,40 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Home
+{% endblock %}
+
+{% block main %}
+
+<h1>Welcome back, {{text}} !</h1>
+<h2>Here are your open tickets :</h2>
+<table class="a">
+    <tr>
+        <th>Id</th>
+        <th>Project name</th>
+        <th>Date</th>
+        <th>Status</th>
+        <th>View</th>
+        <th>Edit</th>
+    </tr>
+    {% for item in items %}
+    <tr>
+        <td>{{item.id}}</td>
+        <td>{{item.proj_name}}</td>
+        <td>{{item.date}}</td>
+        <td>{{item.status}}</td>
+        <td>
+            <form action="/lookup/{{item.id}}" method="post">
+                <button type="submit" name="ticket" value={{item.id}} class="btn-link">view</button>
+            </form>
+        </td>
+        <td>
+            <form action="/edit/{{item.id}}" method="post">
+                <button type="submit" name="ticket" value={{item.id}} class="btn-link">edit</button>
+            </form>
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+
+{% endblock %}

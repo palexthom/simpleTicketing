@@ -1,0 +1,20 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Edit a ticket
+{% endblock %}
+
+{% block main %}
+
+    <h1>Fill in ticket # to edit :</h1>
+
+    <div class="container">
+   	<form action="/edit" method="post">
+        <div class="form-group">
+            <input autocomplete="off" autofocus class="form-control" name="ticket" type="integer">
+        </div>
+        <button class="btn btn-primary" type="submit">Edit ticket</button>
+    </form>
+    </div>
+
+{% endblock %}

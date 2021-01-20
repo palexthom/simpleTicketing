@@ -1,0 +1,99 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Editing a ticket
+{% endblock %}
+
+{% block main %}
+
+    <div class="container">
+         <div class="row align-items-center">
+            <h1>Editing a ticket</h1>
+        </div>
+    </div>
+
+    <form action="/editing" method="post">
+
+        <div class="form-row">
+            <div class="form-group col-md-4">
+                <label>Ticket #</label>
+                <input type="text" readonly class="form-control" name="ticket" value={{ticket.id}}>
+            </div>
+            <div class="form-group col-md-4">
+                <label>User</label>
+                <input type="text" readonly class="form-control" value={{ticket.username}}>
+            </div>
+            <div class="form-group col-md-4">
+                <label>Date</label>
+                <input type="text" readonly class="form-control" value={{ticket.date}}>
+            </div>
+        </div>
+
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="project">Project</label>
+                <select class="form-control" id="project" name="project">
+                    <option selected>{{proj_name}}</option>
+                    {% for project in projects %}
+                        {% if proj_name != project.name %}
+                            <option>{{project.name}}</option>
+                        {% endif %}
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="form-group col-md-6">
+                <label for="status">Status</label>
+                <select class="form-control" id="status" name="status">
+                <option selected>{{ticket.status}}</option>
+                {% if ticket.status == "open" %}
+                    <option>close</option>
+                {% else %}
+                    <option>open</option>
+                {% endif %}
+                </select>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="form-row">
+                <div class="form-group col-md-3">
+                    <label for="comment">Comment*</label>
+                </div>
+                <div class="form-group col-md-9">
+                    <input type="text" class="form-control" id="comment" name="comment" aria-describedby="commentHelp" placeholder="Add comments">
+                </div>
+            </div>
+            <small id="commentHelp" class="form-text text-muted">Please fill in information about the changes made to the ticket.</small>
+        </div>
+
+        <button class="btn btn-primary" type="submit">Edit ticket</button>
+
+
+
+        <div class="container">
+            <div  class="row align-items-center">
+                <h2>Ticket updates :</h2>
+
+                <table class="a">
+                <tr>
+                    <th>Date</th>
+                    <th>User</th>
+                    <th>Description</th>
+                    <th>Status</th>
+                </tr>
+                {% for item in jobs %}
+                    <tr>
+                       <td>{{item.date}}</td>
+                       <td>{{item.username}}</td>
+                       <td>{{item.description}}</td>
+                       <td>{{item.status}}</td>
+                    </tr>
+                {% endfor %}
+                </table>
+            </div>
+        </div>
+
+    </form>
+
+
+{% endblock %}

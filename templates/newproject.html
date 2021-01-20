@@ -1,0 +1,14 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Create a new project
+{% endblock %}
+
+{% block main %}
+    <form action="/newproject" method="post">
+        <div class="form-group">
+            <input autocomplete="off" autofocus class="form-control" name="projectname" placeholder="Project Name" type="text">
+        </div>
+        <button class="btn btn-primary" type="submit">Create</button>
+    </form>
+{% endblock %}

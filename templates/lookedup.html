@@ -1,0 +1,38 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Ticket summary
+{% endblock %}
+
+{% block main %}
+
+    <h1>Summary for ticket #{{ticket.id}}</h1>
+
+    <div class="a">
+    <table class="a">
+        <tr>
+            <th>Date</th>
+            <th>User</th>
+            <th>Description</th>
+            <th>Status</th>
+        </tr>
+        {% for item in jobs %}
+        <tr>
+           <td>{{item.date}}</td>
+           <td>{{item.username}}</td>
+           <td>{{item.description}}</td>
+           <td>{{item.status}}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    </div>
+
+    <div class="form-group">
+        <form action="/edit/{{ticket.id}}" method="post">
+                <button type="submit" name="ticket" value={{ticket.id}} class="btn btn-primary">Edit this ticket</button>
+        </form>
+    </div>
+
+
+
+{% endblock %}
